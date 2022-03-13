@@ -67,6 +67,16 @@ class JobProfile extends Component {
       </div>
     )
   }
+  
+  renderJobProfileFailureView = () => (
+    <div className="job-profile-failure-view">
+      <Link to="/jobs">
+        <button type="button" className="job-profile-retry-button">
+          Retry
+        </button>
+      </Link>
+    </div>
+  )
 
   renderJobProfile = () => {
     const {currentStatus} = this.state
