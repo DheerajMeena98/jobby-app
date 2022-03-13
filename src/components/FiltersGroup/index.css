@@ -1,0 +1,34 @@
+.each-label-text {
+  color: #ffffff;
+}
+
+.salary-range-filter {
+  margin-top: 10px;
+}
+
+.employement-type-filter {
+  margin-top: 10px;
+}
+
+.hr-line {
+  margin-top: 10px;
+}
+.employement-type-container {
+  list-style-type: none;
+  padding: 0px;
+}
+
+.salary-filters-container {
+  list-style-type: none;
+  padding: 0px;
+}
+
+.type-of-employment-heading {
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.salary-range-heading {
+  color: #ffffff;
+  font-size: 20px;
+}

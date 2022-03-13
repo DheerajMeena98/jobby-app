@@ -1,0 +1,27 @@
+.not-found-bcg-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.not-found-img {
+  width: 80%;
+}
+
+.not-found-para {
+  color: #000000;
+}
+
+@media screen and (min-width: 768px) {
+  .not-found-img {
+    width: 50%;
+  }
+}

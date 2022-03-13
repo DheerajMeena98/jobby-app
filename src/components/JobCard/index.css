@@ -1,0 +1,102 @@
+.each-job-card {
+  list-style-type: none;
+  border-radius: 14px;
+  background-color: #2c364c;
+  margin: 12px;
+  padding: 15px;
+}
+
+p {
+  color: #ffffff;
+}
+
+.job-link-item {
+  text-decoration: none;
+}
+
+.job-profile-title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.job-profile-title-card {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  margin-left: 30px;
+}
+
+.company-logo-card {
+  width: 5%;
+}
+
+.company-logo {
+  height: 40px;
+  width: 40px;
+  margin-top: 20px;
+}
+
+.rating-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.rating-star {
+  color: #ffffff;
+}
+
+.job-rating {
+  margin-left: 10px;
+}
+
+.job-title {
+  color: #ffffff;
+  height: 1px;
+}
+
+.location-icon {
+  color: #ffffff;
+}
+
+.location {
+  margin-left: 10px;
+}
+
+.location-salary-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.location-job-type-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+}
+
+.job-location {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.hr-line {
+  color: #ffffff;
+}
+
+@media screen and (min-width: 768px) {
+  .location-job-type-section {
+    width: 20%;
+  }
+
+  .location-salary-container {
+    margin-left: 0px;
+  }
+}
