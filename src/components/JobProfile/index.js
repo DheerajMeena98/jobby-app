@@ -1,4 +1,6 @@
 import {Component} from 'react'
+
+import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 
 import Cookie from 'js-cookie'
@@ -19,6 +21,7 @@ class JobProfile extends Component {
 
   componentDidMount() {
     this.getProfileDetails()
+    console.log('Hi')
   }
 
   getProfileDetails = async () => {
@@ -67,6 +70,16 @@ class JobProfile extends Component {
       </div>
     )
   }
+
+  renderJobProfileFailureView = () => (
+    <div className="job-profile-failure-view">
+      <Link to="/jobs">
+        <button type="button" className="job-profile-retry-button">
+          Retry
+        </button>
+      </Link>
+    </div>
+  )
 
   renderJobProfile = () => {
     const {currentStatus} = this.state
