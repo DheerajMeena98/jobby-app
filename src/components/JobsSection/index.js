@@ -115,13 +115,26 @@ class JobsSection extends Component {
 
   renderJobsSection = () => {
     const {jobsList} = this.state
+    const shouldShowJobs = jobsList.length > 0
 
-    return (
+    return shouldShowJobs ? (
       <ul className="jobs-list-container">
         {jobsList.map(eachJob => (
           <JobCard key={eachJob.id} eachJob={eachJob} />
         ))}
       </ul>
+    ) : (
+      <div className="no-jobs-view">
+        <img
+          src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
+          className="no-jobs-image"
+          alt="no jobs"
+        />
+        <h1 className="no-jobs-heading">No Jobs Found</h1>
+        <p className="no-jobs-description">
+          We could not find any Jobs. Try other filters.
+        </p>
+      </div>
     )
   }
 
