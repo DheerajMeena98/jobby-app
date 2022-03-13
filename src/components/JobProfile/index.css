@@ -25,3 +25,19 @@ p {
   align-items: center;
   height: 100%;
 }
+
+.job-profile-failure-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.job-profile-retry-button {
+  width: 110px;
+  height: 35px;
+  background-color: #4f46e5;
+  border: 0px;
+  border-radius: 12px;
+}
+
