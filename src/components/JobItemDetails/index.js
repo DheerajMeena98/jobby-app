@@ -165,21 +165,18 @@ class JobItemDetails extends Component {
     const {match} = this.props
     const {id} = match.params
     return (
-      <div className="product-details-failure-view-container">
+      <div className="job-item-details-failure-view-container">
         <img
           alt="failure view"
           src="https://assets.ccbp.in/frontend/react-js/failure-img.png "
           className="failure-view-image"
         />
-        <h1 className="product-not-found-heading">
-          Oops! Something Went Wrong
-        </h1>
+        <h1 className="job-not-found-heading">Oops! Something Went Wrong</h1>
         <p> We cannot seem to find the page you are looking for</p>
-        <Link to={`/jobs/${id}`}>
-          <button type="button" className="button">
-            Retry
-          </button>
-        </Link>
+
+        <button type="button" className="button">
+          <Link to={`/jobs/${id}`}>Retry</Link>
+        </button>
       </div>
     )
   }

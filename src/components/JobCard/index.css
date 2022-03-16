@@ -45,6 +45,11 @@ p {
   align-items: center;
 }
 
+.description-label {
+  font-size: 20px;
+  color: #ffffff;
+}
+
 .rating-star {
   color: #ffffff;
 }

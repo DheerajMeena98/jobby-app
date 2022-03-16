@@ -49,7 +49,7 @@ const JobCard = props => {
           <p> {packagePerAnnum}</p>
         </div>
         <hr className="hr-line" />
-        <p> Description </p>
+        <h1 className="description-label"> Description </h1>
         <p> {jobDescription} </p>
       </li>
     </Link>

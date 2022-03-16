@@ -50,6 +50,8 @@ class JobProfile extends Component {
         currentStatus: apiStatusConstants.success,
         profileDetails: updateProfileData,
       })
+    } else {
+      this.setState({currentStatus: apiStatusConstants.failure})
     }
   }
 
@@ -64,20 +66,26 @@ class JobProfile extends Component {
     const {profileImageUrl, name, shortBio} = profileDetails
     return (
       <div className="job-profile-card">
-        <img src={profileImageUrl} />
-        <p className="job-profile-name"> {name} </p>
+        <img src={profileImageUrl} alt="profile" />
+        <h1 className="job-profile-name"> {name} </h1>
         <p className="job-profile-bio"> {shortBio} </p>
       </div>
     )
   }
 
+  onRetryJobProfile = () => {
+    this.getProfileDetails()
+  }
+
   renderJobProfileFailureView = () => (
     <div className="job-profile-failure-view">
-      <Link to="/jobs">
-        <button type="button" className="job-profile-retry-button">
-          Retry
-        </button>
-      </Link>
+      <button
+        type="button"
+        className="job-profile-retry-button"
+        onClick={this.onRetryJobProfile}
+      >
+        Retry
+      </button>
     </div>
   )
 

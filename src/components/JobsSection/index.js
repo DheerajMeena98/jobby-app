@@ -1,9 +1,9 @@
 import {Component} from 'react'
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 import {BsSearch} from 'react-icons/bs'
 
 import Loader from 'react-loader-spinner'
-import Cookie from 'js-cookie'
+import Cookies from 'js-cookie'
 import JobCard from '../JobCard/index'
 import JobProfile from '../JobProfile/index'
 import FiltersGroup from '../FiltersGroup/index'
@@ -40,22 +40,18 @@ const salaryRangesList = [
   {
     salaryRangeId: '1000000',
     label: '10 LPA and above',
-    isChecked: false,
   },
   {
     salaryRangeId: '2000000',
     label: '20 LPA and above',
-    isChecked: false,
   },
   {
     salaryRangeId: '3000000',
     label: '30 LPA and above',
-    isChecked: false,
   },
   {
     salaryRangeId: '4000000',
     label: '40 LPA and above',
-    isChecked: false,
   },
 ]
 
@@ -78,7 +74,7 @@ class JobsSection extends Component {
     console.log(searchInput)
     const url = `https://apis.ccbp.in/jobs?employment_type=${employmentTypeFilter}&minimum_package=${salaryRangeFilter}&search=${searchInput}`
 
-    const jwtToken = Cookie.get('jwt_token')
+    const jwtToken = Cookies.get('jwt_token')
 
     const options = {
       method: 'GET',
@@ -88,10 +84,10 @@ class JobsSection extends Component {
     }
 
     const response = await fetch(url, options)
-    const data = await response.json()
 
     if (response.ok === true) {
-      const updatedJobsList = await data.jobs.map(item => ({
+      const data = await response.json()
+      const updatedJobsList = data.jobs.map(item => ({
         id: item.id,
         companyLogoUrl: item.company_logo_url,
         employmentType: item.employment_type,
@@ -103,12 +99,10 @@ class JobsSection extends Component {
       }))
 
       this.setState({
-        currentStatus: apiStatusConstants.success,
         jobsList: updatedJobsList,
+        currentStatus: apiStatusConstants.success,
       })
-    }
-
-    if (response.status === 404) {
+    } else {
       this.setState({currentStatus: apiStatusConstants.failure})
     }
   }
@@ -132,14 +126,14 @@ class JobsSection extends Component {
         />
         <h1 className="no-jobs-heading">No Jobs Found</h1>
         <p className="no-jobs-description">
-          We could not find any Jobs. Try other filters.
+          We could not find any jobs. Try other filters
         </p>
       </div>
     )
   }
 
   renderLoader = () => (
-    <div className="jobs-loader-container">
+    <div className="jobs-loader-container" testid="loader">
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </div>
   )
@@ -153,8 +147,13 @@ class JobsSection extends Component {
       />
       <h1 className="job-failure-heading-text">Oops! Something Went Wrong</h1>
       <p className="jobs-failure-description">
-        We are having some trouble processing your request. Please try again.
+        We cannot seem to find the page you are looking for
       </p>
+      <Link to="/jobs">
+        <button type="button" className="job-profile-retry-button">
+          Retry
+        </button>
+      </Link>
     </div>
   )
 
@@ -174,14 +173,11 @@ class JobsSection extends Component {
 
   onSearchFilterJobs = event => {
     this.setState({searchInput: event.target.value})
-    this.getJobs()
   }
 
   onEnterSearchInput = event => {
-    if (event.target.value === 'Enter') {
-      this.setState({searchInput: event.target.value})
-      this.getJobs()
-    }
+    this.setState({searchInput: event.target.value})
+    this.getJobs()
   }
 
   salaryFilter = async salaryLabel => {
@@ -196,11 +192,13 @@ class JobsSection extends Component {
   }
 
   render() {
-    const jwtToken = Cookie.get('jwt_token')
+    const jwtToken = Cookies.get('jwt_token')
 
     if (jwtToken === undefined) {
       return <Redirect to="/login" />
     }
+
+    const {searchInput} = this.state
 
     return (
       <div className="jobs-section-bcg-container">
@@ -218,13 +216,14 @@ class JobsSection extends Component {
               type="search"
               className="search-input"
               placeholder="search"
+              value={searchInput}
               onChange={this.onSearchFilterJobs}
-              onKeyDown={this.onEnterSearchInput}
             />
             <button
               testid="searchButton"
               type="button"
               className="search-button"
+              onClick={this.onEnterSearchInput}
             >
               <BsSearch className="search-icon" />
             </button>
